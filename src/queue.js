@@ -15,19 +15,42 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default class Queue {
 
-  getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    getUnderlyingList() 
+  {
+    return this.head;
   }
 
-  enqueue(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+   enqueue(value) 
+  {
+    const newNode = { value, next: null };
+    
+    if (!this.tail) 
+    {
+      this.head = newNode;
+      this.tail = newNode;
+    } 
+    else 
+    {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
   }
 
-  dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  dequeue() 
+  {
+    if (!this.head) 
+    {
+      return null;
+    }
+    
+    const value = this.head.value;
+    this.head = this.head.next;
+    
+    if (!this.head) 
+    {
+      this.tail = null;
+    }
+    
+    return value;
   }
-
 }
